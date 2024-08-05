@@ -29,11 +29,18 @@ async def get_uri():
         logging.error("Failed to decode JSON response from %s: %s", url, e)
 
 
-async def send_GroupInvite(websocket, Group, wxid):
+async def reply(websocket, message["data"]["msg"], wxid):
+    if message["data"]["msg"] == "A":
+        message == "A你好"
+    elif message["data"]["msg"] == "B":
+        message == "B你好"
+    elif message["data"]["msg"] == "C":
+        message == "C你好"
     data = {
-        "method": "sendGroupInvite",
-        "wxid": Group,
-        "msg": wxid,
+        "method": "sendText",
+        "wxid": wxid,
+        "msg": message,
+        "atid": "",
         "pid": 0
     }
     await websocket.send(json.dumps(data))
@@ -58,9 +65,11 @@ async def websocket_client():
                                 logging.warning(f'{msg}, 消息：({type_dict[int(message["data"]["type"])]})')
                             else:
                                 print(message)
-                                if '拉群' == message["data"]["msg"]:
-                                    await send_GroupInvite(websocket, Group, message["data"]["fromid"])
-                                logging.info(f'{msg}, 消息:{message["data"]["msg"]}')
+                                keywords_list = ['A','B','C']
+                                for keywords in keywords_list:
+                                    if keywords in message["data"]["msg"]:
+                                        await keywords_reoly(websocket, message["data"]["msg"], message["data"]["fromid"])
+                                        logging.info(f'{msg}, 消息:{message["data"]["msg"]}')
                     except Exception as e:
                         logging.error(str(e))
                         pass
