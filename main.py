@@ -12,7 +12,6 @@ type_dict = {
     49: '卡片消息暂时不做处理',
     10002: '撤回消息暂时不做处理',
 }
-Group = '123456@chatroom' #群ID
 
 async def get_uri():
     url = "http://127.0.0.1:8000/ext/www/key.ini"
