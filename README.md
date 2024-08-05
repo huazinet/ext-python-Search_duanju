@@ -2,7 +2,7 @@
 - 关键词回复
 
 文件说明：
-- main.py是main文件，修改Group为你的群聊ID 直接运行即可
+- main.py是main文件
 
 ## 使用方法
 - keywords_list里填写关键词
