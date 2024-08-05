@@ -46,7 +46,7 @@ async def reply(websocket, message["data"]["msg"], wxid):
     await websocket.send(json.dumps(data))
     response = await websocket.recv()
     if response['data']['type'] == 51 and response['data']['utype'] == 3:
-        logging.info(f"邀请成功:{response['data']['alias']}")
+        logging.info(f"关键词回复成功:{response['data']['alias']}")
 
 
 async def websocket_client():
